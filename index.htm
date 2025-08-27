@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>СКР БАРАХОЛКА</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> <!-- Для иконок -->
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body class="dark-theme">
+  <header>
+    <div class="logo">
+      <span class="skr bounce">СКР</span>
+      <span class="baraholka">БАРАХОЛКА</span>
+    </div>
+    <button id="menu-toggle" class="hamburger">☰</button>
+    <div class="controls">
+      <select id="language">
+        <option value="ru">Русский</option>
+        <option value="uk">Українська</option>
+      </select>
+      <button id="theme-toggle">🌙</button>
+    </div>
+  </header>
+  <nav class="sidebar">
+    <ul>
+      <li><a href="#home"><i class="fas fa-home"></i> Главная</a></li>
+      <li><a href="#categories"><i class="fas fa-tags"></i> Категории</a></li>
+      <li><a href="#create-ad"><i class="fas fa-plus"></i> Создать объявление</a></li>
+      <li><a href="#admin" id="admin-link"><i class="fas fa-shield-alt"></i> Админ панель</a></li>
+    </ul>
+  </nav>
+  <main>
+    <section id="home">
+      <h1>Главная</h1>
+      <div class="filters">
+        <input type="text" id="search" placeholder="Поиск...">
+        <input type="number" id="min-price" placeholder="Мин цена">
+        <input type="number" id="max-price" placeholder="Макс цена">
+        <select id="city-filter">
+          <option value="">Все города</option>
+          <option value="Киев">Киев</option>
+          <option value="Харьков">Харьков</option>
+          <!-- Добавьте больше городов -->
+        </select>
+        <button id="apply-filters">Применить</button>
+      </div>
+      <div id="ads-list" class="ads-grid"></div>
+    </section>
+    <section id="categories" style="display:none;">
+      <h1>Категории</h1>
+      <select id="category-select">
+        <option value="">Все</option>
+        <option value="электроника">Электроника</option>
+        <option value="украшения">Украшения</option>
+        <option value="одежда">Одежда</option>
+        <option value="поды/вейпы">Поды/Вейпы</option>
+      </select>
+      <div id="category-ads" class="ads-grid"></div>
+    </section>
+    <section id="create-ad" style="display:none;">
+      <h1>Создать объявление</h1>
+      <form id="ad-form">
+        <input type="text" name="title" placeholder="Название" required>
+        <select name="category" required>
+          <option value="электроника">Электроника</option>
+          <option value="украшения">Украшения</option>
+          <option value="одежда">Одежда</option>
+          <option value="поды/вейпы">Поды/Вейпы</option>
+        </select>
+        <input type="number" name="price" placeholder="Цена (UAH)" required>
+        <textarea name="description" placeholder="Описание" required></textarea>
+        <input type="text" name="city" placeholder="Город" required>
+        <input type="file" name="photos" multiple accept="image/*" required>
+        <button type="submit">Отправить на модерацию</button>
+      </form>
+    </section>
+    <section id="admin" style="display:none;">
+      <h1>Админ панель</h1>
+      <form id="admin-login" style="display:block;">
+        <input type="password" id="admin-password" placeholder="Пароль">
+        <button type="submit">Войти</button>
+      </form>
+      <div id="admin-content" style="display:none;">
+        <div id="pending-ads" class="ads-grid"></div>
+      </div>
+    </section>
+  </main>
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div class="photo-carousel">
+        <img id="modal-photo" src="">
+        <button class="prev">&#10094;</button>
+        <button class="next">&#10095;</button>
+      </div>
+      <h2 id="modal-title"></h2>
+      <p id="modal-price"></p>
+      <p id="modal-city"></p>
+      <p id="modal-description"></p>
+      <button id="chat-button">Написать продавцу</button>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
